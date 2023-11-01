@@ -6,13 +6,15 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
 
+  const URL = '';
+
   useEffect(() => {
     getProducts();
   }, []);
 
   const getProducts = async () => {
     try {
-      let result = await fetch("http://localhost:5000/products");
+      let result = await fetch(`${URL}/products`);
       if (result.ok) {
         const data = await result.json();
         setProducts(data);
@@ -43,7 +45,7 @@ const ProductList = () => {
             <ul key={item._id}>
               <li>{index + 1}</li>
               <li>{item.name}</li>
-              <li>RS.{item.author}</li>
+              <li>{item.author}</li>
               <li>{item.genres}</li>
               <li>{item.excerpt}</li>
               <Link className="updateButton" to={"/description/" + item._id}>

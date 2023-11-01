@@ -4,21 +4,38 @@ const mongoose = require('mongoose');
 require('./db/config')
 const User = require("./db/User");
 const Product = require("./db/Product");
+const { Connection } = require("./db/config");
+const dotenv = require('dotenv');
+
+
+
+// mongoose.connect('mongodb+srv://ankit:1FhBOh2VWpa4dywE@cluster0.poaog8t.mongodb.net/Library', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+//   .then(() => {
+//     console.log('Connected to MongoDB');
+//   })
 
 const app = express();
 app.use(express.json());
 
+dotenv.config();
 
-mongoose.connect('mongodb://localhost:27017/library', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log('Connected to MongoDB');
-})
-.catch(error => {
-  console.error('Error connecting to MongoDB:', error);
-});
+const USERNAME = process.env.DB_USERNAME;
+const PASSWORD = process.env.DB_PASSWORD;
+
+
+// mongoose.connect('mongodb+srv://ankit:1FhBOh2VWpa4dywE@cluster0.poaog8t.mongodb.net/Library', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// })
+// .then(() => {
+//   console.log('Connected to MongoDB');
+// })
+// .catch(error => {
+//   console.error('Error connecting to MongoDB:', error);
+// });
 
 
 // const corsOptions = {
@@ -122,7 +139,21 @@ app.delete("/product/:id", async (req, resp) => {
 
 // connectDB();
 
+
+console.log(USERNAME,PASSWORD);
+
 const PORT = process.env.PORT || 5000;
+const URL = process.env.MONGODB_URI || `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.lyhr137.mongodb.net/?retryWrites=true&w=majority`;
+Connection(URL);
+
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static('client/build'))
+}
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+
+// ankit
+// MQy16NvJFxKndpmT
+// 182.69.121.74/32

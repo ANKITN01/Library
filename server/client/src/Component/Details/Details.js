@@ -9,14 +9,16 @@ const Details = () => {
   const [excerpt, setExcerpt] = useState("");
   const params = useParams();
   const navigate = useNavigate();
+  const URL = '';
 
   useEffect(() => {
     getProductDetails();
   }, []);
 
+
   const getProductDetails = async () => {
     try {
-      let result = await fetch(`http://localhost:5000/product/${params.id}`);
+      let result = await fetch(`${URL}/product/${params.id}`);
       if (result.ok) {
         const data = await result.json();
         console.warn(data);

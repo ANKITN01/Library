@@ -10,6 +10,7 @@ const Signup = () => {
 
   const navigate = useNavigate();
 
+  const URL = '';
   // const validateEmail = (input) => {
   //   // A simple email validation regex
   //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -43,7 +44,7 @@ const Signup = () => {
     //   return;
     // }
 
-    let result =await fetch('http://localhost:5000/signup',{
+    let result =await fetch(`${URL}/signup`,{
       method:'post',
       body:JSON.stringify({name,email,password}),
       headers:{

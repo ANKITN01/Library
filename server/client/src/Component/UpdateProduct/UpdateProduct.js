@@ -14,9 +14,11 @@ const UpdateProduct = () => {
     getProductDetails();
   }, []);
 
+  const URL = '';
+
   const getProductDetails = async () => {
     try {
-      let result = await fetch(`http://localhost:5000/product/${params.id}`);
+      let result = await fetch(`${URL}/product/${params.id}`);
       if (result.ok) {
         const data = await result.json();
         console.warn(data);
@@ -37,7 +39,7 @@ const UpdateProduct = () => {
   const updateProduct = async () => {
     try {
       console.log(name, author, genres, excerpt);
-      let result = await fetch(`http://localhost:5000/product/${params.id}`, {
+      let result = await fetch(`${URL}/product/${params.id}`, {
         method: "PUT",
         body: JSON.stringify({ name, author, genres, excerpt }),
         headers: {

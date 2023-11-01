@@ -9,13 +9,15 @@ const AddProduct = () => {
 
   const navigate = useNavigate();
 
+  const URL = '';
+
   const addProduct = async () => {
     console.log(name, author, genres, excerpt);
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       const userId = user._id;
       try {
-        const response = await fetch("http://localhost:5000/add-product", {
+        const response = await fetch(`${URL}/add-product`, {
           method: "POST",
           body: JSON.stringify({ name, author, genres, excerpt, userId }),
           headers: {

@@ -5,14 +5,14 @@ import "./ProductList.css";
 const ProductList = () => {
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
-
+  const URL = '';
   useEffect(() => {
     getProducts();
   }, []);
 
   const getProducts = async () => {
     try {
-      let result = await fetch("http://localhost:5000/products");
+      let result = await fetch(`${URL}/products`);
       if (result.ok) {
         const data = await result.json();
         setProducts(data);
@@ -30,7 +30,7 @@ const deleteProduct = async (id) => {
     console.log(id);
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        const response = await fetch(`http://localhost:5000/product/${id}`, {
+        const response = await fetch(`${URL}/product/${id}`, {
           method: "DELETE"
         });
         console.log(id);
