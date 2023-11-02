@@ -140,7 +140,6 @@ app.delete("/product/:id", async (req, resp) => {
 // connectDB();
 
 
-console.log(USERNAME,PASSWORD);
 
 const PORT = process.env.PORT || 5000;
 const URL = process.env.MONGODB_URI || `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.lyhr137.mongodb.net/?retryWrites=true&w=majority`;
